@@ -1,17 +1,34 @@
 import React, {useState} from 'react';
 import './Main.css';
+import Field from './Field';
 
 const Main = () => {
- const [isHovered, setIsHovered] = useState(false);
+  const [ isHovered, setIsHovered] = useState(false);
+  const [fields, setFields] = useState([
+    { name: 'holdingCost', value: [] },
+    { name: 'minorCost', value: [] },
+    { name: 'setupCost', value: [] },
+    { name: 'demand', value: [] },
+  ]);
+
+  const handleRun = () => {
+    return <p1> you have clicked me</p1>;
+  }
 
   return (
-    <div className="main"> 
-    <h1>Main content</h1>
-    <p></p>
-    <button className={`button ${isHovered ? 'hovered' : ''}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} > Run </button>
+    <div className="main">
+      <h1>Main content</h1>
+      {fields.map((field, index) => (
+        <Field
+          key={field.name}
+          Text={field.name}
+          index={index}
+          fields={fields}
+          setFields={setFields}
+        />
+      ))}
+      <button className={`button ${isHovered ? 'hovered' : ''}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={handleRun} > Run </button>
     </div>
-
   )
 }
-
 export default Main

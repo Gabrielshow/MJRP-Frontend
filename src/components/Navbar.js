@@ -5,12 +5,14 @@ import { FaHome, FaInfo, FaQuestionCircle } from 'react-icons/fa';
 
 
 
+
 const Navbar = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
   return (
     <nav className="navbar" style={{ margin: 10 }}>
       <div className="container">
-        <h1>JRP implementation</h1>
+        <img src={process.env.PUBLIC_URL + '/assets/logo.png'} alt="JRP implementation logo" style={{}}/>
+        {/* <h1>JRP implementation</h1> */}
         <ul>
           <li>
             <Link to="/" onMouseEnter={() => setHoveredItem('home')}
