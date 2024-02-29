@@ -1,16 +1,23 @@
-.action_button {
+.button {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1.5rem, 1.5rem;
     padding: 1.5rem;
-    height: 20px;
-    width: 20px;
+    height: 24px;
+    width: 100px;
     background-color: rgba(14, 221, 121, 0.764);
     color: white;
-    border-radius: 10px;
+    border-radius: 20px;
     border-style: none;
     cursor: pointer;
+    border: none;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.hovered {
+    transform : translateY(-2px);
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .main{

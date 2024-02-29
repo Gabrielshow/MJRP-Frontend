@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import FAQs from '../containers/FAQs/FAQs';
-import About from '../containers/About/About';
+import { FaHome, FaInfo, FaQuestionCircle } from 'react-icons/fa';
+
 
 
 const Navbar = () => {
@@ -15,21 +15,21 @@ const Navbar = () => {
           <li>
             <Link to="/" onMouseEnter={() => setHoveredItem('home')}
         onMouseLeave={() => setHoveredItem(null)} style={{ color: hoveredItem === 'home' ? 'purple' : 'black' , padding: 5}}>
-              Home
+              Home <FaHome />
             </Link>
 
           </li>
           <li>
             <Link to="/about" onMouseEnter={() => setHoveredItem('about')}
         onMouseLeave={() => setHoveredItem(null)} style={{ color: hoveredItem === 'about' ? 'purple' : 'black' , padding: 5}}>
-              About
+              About <FaInfo />
             </Link>
 
           </li>
           <li>
 
             <Link to="/faqs" onMouseEnter={() => setHoveredItem('faqs')}
-        onMouseLeave={() => setHoveredItem(null)} style={{ color: hoveredItem === 'faqs' ? 'purple' : 'black', padding: 5}}> FAQs </Link>
+        onMouseLeave={() => setHoveredItem(null)} style={{ color: hoveredItem === 'faqs' ? 'purple' : 'black', padding: 5}}> FAQs <FaQuestionCircle /> </Link>
           </li>
         </ul>
 
