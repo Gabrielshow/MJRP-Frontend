@@ -11,6 +11,10 @@ const Field = ({ Text, index, fields, setFields }) => {
     setFields(fields.map((field, i) => i === index ? { ...field, value: newValue } : field));
   }
 
+  const handleFocus = (e) => {
+    e.target.style.outline = "none";
+  }
+
   return (
     <>
       <motion.label
@@ -25,9 +29,11 @@ const Field = ({ Text, index, fields, setFields }) => {
           type="text"
           value={value}
           onChange={handleChange}
+          onFocus={handleFocus}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           transition={{ duration: 0.2 }}
+          style={{marginBottom: 5 }}
         />
       </motion.label>
     </>

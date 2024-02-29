@@ -5,10 +5,10 @@ import Field from './Field';
 const Main = () => {
   const [ isHovered, setIsHovered] = useState(false);
   const [fields, setFields] = useState([
-    { name: 'holdingCost', value: [] },
-    { name: 'minorCost', value: [] },
-    { name: 'setupCost', value: [] },
-    { name: 'demand', value: [] },
+    { name: 'Holding Cost', value: [] },
+    { name: 'Minor Cost', value: [] },
+    { name: 'Setup Cost', value: [] },
+    { name: 'Demand', value: [] },
   ]);
 
   const handleRun = () => {
