@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 const Navbar = () => {
   const [hoveredItem, setHoveredItem] = useState(null);
   return (
-    <nav className="navbar" style={{ margin: 10 }}>
+    <nav className="navbar" >
       <div className="container">
         <img src={process.env.PUBLIC_URL + '/assets/logo.png'} alt="JRP implementation logo" style={{}}/>
         {/* <h1>JRP implementation</h1> */}
@@ -20,8 +20,7 @@ const Navbar = () => {
             <Link to="/" onMouseEnter={() => setHoveredItem('home')}
         onMouseLeave={() => setHoveredItem(null)} style={{ color: hoveredItem === 'home' ? 'purple' : 'black' , padding: 5}}>
            <motion.span whileHover={{ scale: 1.2 }}>
-            <FaHome />
-                Home
+            <FaHome />Home
               </motion.span>
             </Link>
 
@@ -29,8 +28,7 @@ const Navbar = () => {
           <li>
             <Link to="/about" onMouseEnter={() => setHoveredItem('about')}
         onMouseLeave={() => setHoveredItem(null)} style={{ color: hoveredItem === 'about' ? 'purple' : 'black' , padding: 5}}>
-              <FaInfo />
-              About
+              <FaInfo />About
             </Link>
 
           </li>
@@ -38,8 +36,8 @@ const Navbar = () => {
 
             <Link to="/faqs" onMouseEnter={() => setHoveredItem('faqs')}
         onMouseLeave={() => setHoveredItem(null)} style={{ color: hoveredItem === 'faqs' ? 'purple' : 'black', padding: 5}}> 
-         <FaQuestionCircle /> </Link>
-        FAQs
+         <FaQuestionCircle />FAQs
+         </Link>
           </li>
         </ul>
 

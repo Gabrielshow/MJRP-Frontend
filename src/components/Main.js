@@ -17,7 +17,7 @@ const Main = () => {
 
   return (
     <div className="main">
-      <h1>Enter values of the necessary parameters</h1>
+      <h1>Enter the values of the necessary parameters</h1>
       {fields.map((field, index) => (
         <Field
           key={field.name}
