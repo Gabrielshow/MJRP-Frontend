@@ -43,7 +43,7 @@ const Main = () => {
           key={field.name}
           Text={field.name}
           value={field.value}
-          onChange={(e) => handleFieldChange(index, e.target.value)}
+          onChange={(newValue) => handleFieldChange(index, newValue)}
         />
       ))}
       <button

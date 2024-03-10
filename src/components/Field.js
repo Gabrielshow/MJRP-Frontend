@@ -3,8 +3,7 @@ import { motion } from 'framer-motion';
 
 const Field = ({ Text, index, onChange  }) => {
     const [error, setError] = useState('');
-    const field = fields[index]
-    const [value, setValue] = useState(field.value);
+    const [value, setValue] = useState('');
 
   const handleChange = (e) => {
     const newValue = e.target.value;
@@ -35,7 +34,7 @@ const Field = ({ Text, index, onChange  }) => {
           id={`input-field-${index}`}
           type="text"
           value={value}
-          onChange={onChange}
+          onChange={handleChange}
           onFocus={handleFocus}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
