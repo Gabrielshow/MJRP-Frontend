@@ -4,6 +4,7 @@ import Field from './Field';
 
 const Main = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [result, setResult] = useState(null);
   const [fields, setFields] = useState([
     { name: 'Holding Cost', value: '' },
     { name: 'Minor Cost', value: '' },
@@ -23,6 +24,7 @@ const Main = () => {
         body: JSON.stringify({ parameters: fieldValues })
       });
       const data = await response.json();
+      setResult(data.result);
       console.log(data); // Handle response from the server
     } catch (error) {
       console.error('Error:', error);
@@ -35,8 +37,17 @@ const Main = () => {
     setFields(updatedFields);
   }
 
-  return (
+  return ( 
+    
     <div className="main">
+      {result && (
+      <div>
+         <h2>Result</h2>
+         <p>Optimal cycle time T_p: {result["Optimal cycle time T_p"]}</p>
+         <p>Optimal order quantity Q: {result["Optimal order quantity Q"]}</p>
+         <p>Total relevant cost C: {result["Total relevant cost C"]}</p>
+      </div>
+     )}
       <h1>Enter the values of the necessary parameters</h1>
       {fields.map((field, index) => (
         <Field
