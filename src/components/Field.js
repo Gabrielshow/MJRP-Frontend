@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
-const Field = ({ Text, index, fields, setFields }) => {
+const Field = ({ Text, index, onChange  }) => {
+    const [error, setError] = useState('');
     const field = fields[index]
-  const [value, setValue] = useState(field.value);
+    const [value, setValue] = useState(field.value);
 
   const handleChange = (e) => {
-    const newValue = e.target.value.split(',');
-    setValue(newValue);
-    setFields(fields.map((field, i) => i === index ? { ...field, value: newValue } : field));
-  }
+    const newValue = e.target.value;
+    if (!isNaN(newValue)) {
+        setValue(newValue);
+        setError(''); // Clear any previous error message
+      } else {
+        setError(`${Text} must be a number`);
+      }
+    };
+    // setValue(newValue);
+    // setFields(fields.map((field, i) => i === index ? { ...field, value: newValue } : field));
 
   const handleFocus = (e) => {
     e.target.style.outline = "none";
@@ -28,7 +35,7 @@ const Field = ({ Text, index, fields, setFields }) => {
           id={`input-field-${index}`}
           type="text"
           value={value}
-          onChange={handleChange}
+          onChange={onChange}
           onFocus={handleFocus}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
@@ -36,6 +43,7 @@ const Field = ({ Text, index, fields, setFields }) => {
           style={{marginBottom: 5 }}
         />
       </motion.label>
+      {error && <p className="error">{error}</p>}
     </>
   )
 }
