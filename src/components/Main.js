@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Main.css';
 import Field from './Field';
+import ArrayInput from './ArrayInput';
 
 const Main = () => {
  const [isHovered, setIsHovered] = useState(false);
@@ -41,7 +42,7 @@ const Main = () => {
  }
 
  const holdingCostField = fields.find(field => field.name === 'Holding Cost');
-  console.log("Holding Cost:", holdingCostField.value);
+ console.log("Holding Cost:", holdingCostField.value);
 
  return (
     <div className="main">
@@ -55,12 +56,20 @@ const Main = () => {
       )}
       <h1>Enter the values of the necessary parameters</h1>
       {fields.map((field, index) => (
-        <Field
-          key={field.name}
-          Text={field.name}
-          value={field.name === 'Holding Cost' ? field.value.join(',') : field.value}
-          onChange={(newValue) => handleFieldChange(index, newValue)}
-        />
+        field.name === 'Holding Cost' ? (
+          <ArrayInput
+            key={field.name}
+            value={field.value}
+            onChange={(newValue) => handleFieldChange(index, newValue)}
+          />
+        ) : (
+          <Field
+            key={field.name}
+            Text={field.name}
+            value={field.value}
+            onChange={(newValue) => handleFieldChange(index, newValue)}
+          />
+        )
       ))}
       <button
         className={`button ${isHovered ? 'hovered' : ''}`}
