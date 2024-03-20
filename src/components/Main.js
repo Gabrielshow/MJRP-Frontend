@@ -32,14 +32,15 @@ const Main = () => {
  }
 
  const handleFieldChange = (index, value) => {
-    const updatedFields = [...fields];
-    if (updatedFields[index].name === 'Holding Cost') {
-      updatedFields[index].value = value.split(',').map(Number);
-    } else {
-      updatedFields[index].value = value;
-    }
-    setFields(updatedFields);
- }
+  // Directly assign the array to the field's value
+  const updatedFields = [...fields];
+  if (updatedFields[index].name === 'Holding Cost') {
+     updatedFields[index].value = value; // value is already an array
+  } else {
+     updatedFields[index].value = value; // For other fields, assign the value directly
+  }
+  setFields(updatedFields);
+ };
 
  const holdingCostField = fields.find(field => field.name === 'Holding Cost');
  console.log("Holding Cost:", holdingCostField.value);
@@ -60,7 +61,7 @@ const Main = () => {
           <ArrayInput
             text="Holding cost"
             key={field.name}
-            value={field.value}
+            value={holdingCostField.value.join(',')}
             onChange={(newValue) => handleFieldChange(index, newValue)}
           />
         ) : (

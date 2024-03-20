@@ -8,6 +8,8 @@ const ArrayInput = ({ text, value, onChange }) => {
     onChange(valuesArray);
  };
 
+ const valueArray = Array.isArray(value) ? value : [];
+
  const handleFocus = (e) => {
    e.target.style.outline = "none";
  }
@@ -30,7 +32,7 @@ const ArrayInput = ({ text, value, onChange }) => {
    <motion.input
      id="input-field"
      type="text"
-     value={value.join(',')}
+     value={valueArray.join(',')}
      onChange={handleChange}
      placeholder="Enter numbers separated by commas"
      variants={inputVariants}
