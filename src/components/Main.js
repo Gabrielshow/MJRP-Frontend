@@ -58,6 +58,7 @@ const Main = () => {
       {fields.map((field, index) => (
         field.name === 'Holding Cost' ? (
           <ArrayInput
+            text="Holding cost"
             key={field.name}
             value={field.value}
             onChange={(newValue) => handleFieldChange(index, newValue)}

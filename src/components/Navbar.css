@@ -1,7 +1,7 @@
 .navbar {
     padding: 1rem;
     /* border-radius: 0.5rem; */
-    background:  rgba(14, 221, 121, 0.764);
+    background:  black;
     backdrop-filter: blur(0.5rem);
 }
 
@@ -17,7 +17,7 @@
     border-radius: 50%;
 }
 .navbar .container h1 {
-    color: black;
+    color: white;
 }
 
 .navbar .container ul {
@@ -42,7 +42,7 @@
 
 .navbar .container a{
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
   

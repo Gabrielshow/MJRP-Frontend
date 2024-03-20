@@ -18,7 +18,7 @@ const Navbar = () => {
         <ul>
           <li>
             <Link to="/" onMouseEnter={() => setHoveredItem('home')}
-        onMouseLeave={() => setHoveredItem(null)} style={{ color: hoveredItem === 'home' ? 'purple' : 'black' , padding: 5}}>
+        onMouseLeave={() => setHoveredItem(null)} style={{ color: hoveredItem === 'home' ? 'purple' : 'white' , padding: 5}}>
            <motion.span whileHover={{ scale: 1.2 }}>
             <FaHome />Home
               </motion.span>
@@ -27,7 +27,7 @@ const Navbar = () => {
           </li>
           <li>
             <Link to="/about" onMouseEnter={() => setHoveredItem('about')}
-        onMouseLeave={() => setHoveredItem(null)} style={{ color: hoveredItem === 'about' ? 'purple' : 'black' , padding: 5}}>
+        onMouseLeave={() => setHoveredItem(null)} style={{ color: hoveredItem === 'about' ? 'purple' : 'white' , padding: 5}}>
               <FaInfo />About
             </Link>
 
@@ -35,7 +35,7 @@ const Navbar = () => {
           <li>
 
             <Link to="/faqs" onMouseEnter={() => setHoveredItem('faqs')}
-        onMouseLeave={() => setHoveredItem(null)} style={{ color: hoveredItem === 'faqs' ? 'purple' : 'black', padding: 5}}> 
+        onMouseLeave={() => setHoveredItem(null)} style={{ color: hoveredItem === 'faqs' ? 'purple' : 'white', padding: 5}}> 
          <FaQuestionCircle />FAQs
          </Link>
           </li>
