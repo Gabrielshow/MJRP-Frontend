@@ -25,6 +25,21 @@ const Simple = ({ onChange }) => {
         setS(newS);
     };
 
+    const deleteRow = (rowIndex) => {
+        if (s.length > 1) {
+            const newS = [...s];
+            newS.splice(rowIndex, 1); // Remove the row at the specified index
+            setS(newS);
+        }
+    };
+
+    const deleteColumn = (colIndex) => {
+        if (s[0].length > 1) {
+            const newS = s.map(row => row.filter((_, index) => index !== colIndex)); // Remove the column at the specified index
+            setS(newS);
+        }
+    };
+
     const handleSubmit = () => {
         // Ensure the data is in the correct format before sending to the backend
         console.log(s); // Example: Send s to the backend
@@ -48,7 +63,7 @@ const Simple = ({ onChange }) => {
     return (
         <div>
             <AnimatePresence>
-            <span>Minor Setup Cost:</span> 
+                <span>Minor Setup Cost:</span> 
                 {s.map((row, rowIndex) => (
                     <div key={rowIndex}>
                         {/* Add span with the text */}
@@ -87,8 +102,14 @@ const Simple = ({ onChange }) => {
             >
                 Submit
             </motion.button>
+            <motion.button
+                onClick={() => deleteColumn(s[0].length - 1)} // Delete the last column
+                variants={buttonVariants}
+            >
+                Delete Item
+            </motion.button>
         </div>
     );
 };
     
-export default Simple
+export default Simple;
