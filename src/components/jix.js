@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Simple = ({ onChange }) => {
-    const [s, setS] = useState([['']]); // Initialize with one row and one column
+const Jix = ({ onChange }) => {
+    const [s, setS] = useState([
+        ['Buyer ID', 'Description', 'Item X', 'Item Y', 'Item Z'],
+        ['Buyer A', '', '1000', '500', '800'],
+        ['Buyer B', '', '800', '700', '600'],
+        ['Buyer C', '', '1200', '600', '900']
+    ]);
 
     const handleInputChange = (rowIndex, colIndex, value) => {
-        // Check if the input is a valid number
-        if (!isNaN(value)) {
-            const newValue = parseFloat(value); // Convert input value to number
-            const newS = [...s];
-            newS[rowIndex][colIndex] = [newValue]; // Store value in a one-element array
-            setS(newS);
-            // Trigger the onChange callback with the updated array of arrays
-            onChange(newS);
-        }
+        const newS = [...s];
+        newS[rowIndex][colIndex] = value; // Update the value directly
+        setS(newS);
+        // Trigger the onChange callback with the updated array of arrays
+        onChange(newS);
     };
 
     const addRow = () => {
-        setS([...s, new Array(s[0].length).fill([''])]); // Add a new row with same number of columns
+        const newRow = ['New Buyer ID', '', '', '', '']; // New row template
+        setS([...s, newRow]);
     };
 
     const addColumn = () => {
-        const newS = s.map(row => [...row, ['']]); // Add a new column to each row
+        const newS = s.map(row => [...row, '']); // Add a new column to each row
         setS(newS);
     };
 
@@ -63,15 +65,13 @@ const Simple = ({ onChange }) => {
     return (
         <div>
             <AnimatePresence>
-                <span>Minor Setup Cost:</span> 
                 {s.map((row, rowIndex) => (
                     <div key={rowIndex}>
-                        {/* Add span with the text */}
                         {row.map((value, colIndex) => (
                             <motion.input
                                 key={colIndex}
                                 type="text"
-                                value={value[0] || ''}
+                                value={value}
                                 onChange={(e) => handleInputChange(rowIndex, colIndex, e.target.value)}
                                 variants={inputVariants}
                                 initial="hidden"
@@ -79,9 +79,18 @@ const Simple = ({ onChange }) => {
                                 whileHover="hover"
                                 whileTap="tap"
                                 onFocus={handleFocus}
+                                style={{marginRight: 10}}
                             />
                         ))}
-                       
+                        {rowIndex !== 0 && (
+                            <motion.button
+                                onClick={() => deleteRow(rowIndex)}
+                                variants={buttonVariants}
+                                style={{marginLeft: 10}}
+                            >
+                                Delete Buyer
+                            </motion.button>
+                        )}
                     </div>
                 ))}
             </AnimatePresence>
@@ -92,10 +101,10 @@ const Simple = ({ onChange }) => {
                 Add Buyer
             </motion.button>
             <motion.button
-                onClick={() => deleteRow(s.length - 1)} // Delete the last row
+                onClick={addColumn}
                 variants={buttonVariants}
             >
-                Delete Buyer
+                Add Item
             </motion.button>
             <motion.button
                 onClick={handleSubmit}
@@ -103,12 +112,6 @@ const Simple = ({ onChange }) => {
             >
                 Submit
             </motion.button>
-            <motion.button
-                            onClick={addColumn}
-                            variants={buttonVariants}
-                        >
-                            Add Item
-                        </motion.button>
             <motion.button
                 onClick={() => deleteColumn(s[0].length - 1)} // Delete the last column
                 variants={buttonVariants}
@@ -119,4 +122,4 @@ const Simple = ({ onChange }) => {
     );
 };
     
-export default Simple;
+export default Jix;

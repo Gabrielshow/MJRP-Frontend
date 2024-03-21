@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Main.css';
 // import Field from './Field';
 import Pike from './Pike';
+import Jix from './jix';
 // import MultiJointInput from './MultiJointInput';
 // import Gotit from './Gotit';
 // import Greddy from './greddy';
@@ -59,7 +60,7 @@ const Main = () => {
       <h1>Enter the values of the necessary parameters</h1>
       {fields.map((field, index) => (
         field.name === 'Holding Cost' ? (
-          <Simple
+          <Jix
             key={field.name}
             onChange={(newValue) => handleFieldChange(index, newValue)}
           />
