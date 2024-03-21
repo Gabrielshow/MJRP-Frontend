@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './Main.css';
 import Field from './Field';
-import MultiJointInput from './MultiJointInput';
+// import MultiJointInput from './MultiJointInput';
 // import Gotit from './Gotit';
 // import Greddy from './greddy';
 import Hope from './hope';
+import DisplayArray from './DisplayArray';
 
 const Main = () => {
  const [isHovered, setIsHovered] = useState(false);
@@ -35,9 +36,10 @@ const Main = () => {
  }
 
  const handleFieldChange = (index, value) => {
- const updatedFields = [...fields];
- updatedFields[index].value = value; // Directly assign the array to the field's value
- setFields(updatedFields);
+  const updatedFields = [...fields];
+  // Directly assign the value for 'Holding Cost' without further processing
+  updatedFields[index].value = value;
+  setFields(updatedFields);
  };
 
  return (
@@ -66,6 +68,7 @@ const Main = () => {
           />
         )
       ))}
+       <DisplayArray array={fields[0].value} />
       
       <button
         className={`button ${isHovered ? 'hovered' : ''}`}
