@@ -3,10 +3,8 @@ import './Main.css';
 import Field from './Field';
 import MultiJointInput from './MultiJointInput';
 // import Gotit from './Gotit';
-// import Greddy from './greddy';
-import Hope from './hope';
 
-const Main = () => {
+const Maim = () => {
  const [isHovered, setIsHovered] = useState(false);
  const [result, setResult] = useState(null);
  const [fields, setFields] = useState([
@@ -53,7 +51,7 @@ const Main = () => {
       <h1>Enter the values of the necessary parameters</h1>
       {fields.map((field, index) => (
         field.name === 'Holding Cost' ? (
-          <Hope
+          <MultiJointInput
             key={field.name}
             onChange={(newValue) => handleFieldChange(index, newValue)}
           />
@@ -79,4 +77,4 @@ const Main = () => {
  )
 }
 
-export default Main;
+export default Maim;

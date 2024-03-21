@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import './Main.css';
 import Field from './Field';
+// import ArrayInput from './ArrayInput';
+import Gotit from './Gotit';
 import MultiJointInput from './MultiJointInput';
-// import Gotit from './Gotit';
-// import Greddy from './greddy';
-import Hope from './hope';
 
 const Main = () => {
  const [isHovered, setIsHovered] = useState(false);
@@ -35,10 +34,18 @@ const Main = () => {
  }
 
  const handleFieldChange = (index, value) => {
- const updatedFields = [...fields];
- updatedFields[index].value = value; // Directly assign the array to the field's value
- setFields(updatedFields);
+  // Directly assign the array to the field's value
+  const updatedFields = [...fields];
+  if (updatedFields[index].name === 'Holding Cost') {
+     updatedFields[index].value = value; // value is already an array
+  } else {
+     updatedFields[index].value = value; // For other fields, assign the value directly
+  }
+  setFields(updatedFields);
  };
+
+ const holdingCostField = fields.find(field => field.name === 'Holding Cost');
+ console.log("Holding Cost:", holdingCostField.value);
 
  return (
     <div className="main">
@@ -53,8 +60,10 @@ const Main = () => {
       <h1>Enter the values of the necessary parameters</h1>
       {fields.map((field, index) => (
         field.name === 'Holding Cost' ? (
-          <Hope
+          <Gotit
+            text="Holding cost"
             key={field.name}
+            value={holdingCostField.value.join(',')}
             onChange={(newValue) => handleFieldChange(index, newValue)}
           />
         ) : (
