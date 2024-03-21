@@ -59,7 +59,7 @@ const Main = () => {
       )}
       <h1>Enter the values of the necessary parameters</h1>
       {fields.map((field, index) => (
-        field.name === 'Holding Cost' ? (
+        field.name === 'Holding Cost' || field.name === 'Demand' ? (
           <Jix
             key={field.name}
             onChange={(newValue) => handleFieldChange(index, newValue)}

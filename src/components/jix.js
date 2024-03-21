@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Jix = ({ onChange }) => {
-    const [s, setS] = useState([
-        ['Buyer ID', 'Description', 'Item X', 'Item Y', 'Item Z'],
-        ['Buyer A', '', '1000', '500', '800'],
-        ['Buyer B', '', '800', '700', '600'],
-        ['Buyer C', '', '1200', '600', '900']
-    ]);
+const Jix = ({ onChange, Text }) => {
+    console.log(Text);
+    const initialData = [
+        ['Buyer ID', 'Item X', 'Item Y', 'Item Z'],
+        ['Buyer A', '1000', '500', '800'],
+        ['Buyer B', '800', '700', '600'],
+        ['Buyer C', '1200', '600', '900']
+    ];
+    
+    const [s, setS] = useState(initialData);
 
     const handleInputChange = (rowIndex, colIndex, value) => {
         const newS = [...s];
@@ -18,7 +21,7 @@ const Jix = ({ onChange }) => {
     };
 
     const addRow = () => {
-        const newRow = ['New Buyer ID', '', '', '', '']; // New row template
+        const newRow = Array(s[0].length).fill(''); // New row with same number of columns
         setS([...s, newRow]);
     };
 
@@ -62,9 +65,12 @@ const Jix = ({ onChange }) => {
         tap: { scale: 0.95 },
     };
 
+    
+
     return (
         <div>
             <AnimatePresence>
+                <span>{Text}</span> {/* Ensure the Text prop is displayed */}
                 {s.map((row, rowIndex) => (
                     <div key={rowIndex}>
                         {row.map((value, colIndex) => (
@@ -82,15 +88,6 @@ const Jix = ({ onChange }) => {
                                 style={{marginRight: 10}}
                             />
                         ))}
-                        {rowIndex !== 0 && (
-                            <motion.button
-                                onClick={() => deleteRow(rowIndex)}
-                                variants={buttonVariants}
-                                style={{marginLeft: 10}}
-                            >
-                                Delete Buyer
-                            </motion.button>
-                        )}
                     </div>
                 ))}
             </AnimatePresence>
@@ -112,6 +109,14 @@ const Jix = ({ onChange }) => {
             >
                 Submit
             </motion.button>
+            {s.length > 1 && ( // Render delete buyer button only if there are more than 1 rows
+                <motion.button
+                    onClick={() => deleteRow(s.length - 1)}
+                    variants={buttonVariants}
+                >
+                    Delete Buyer
+                </motion.button>
+            )}
             <motion.button
                 onClick={() => deleteColumn(s[0].length - 1)} // Delete the last column
                 variants={buttonVariants}
