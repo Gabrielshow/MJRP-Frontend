@@ -1,19 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
-const ArrayInput = ({ text, value, onChange }) => {
+const Gotit = ({ text, onChange }) => {
+ const [inputValue, setInputValue] = useState('');
+
  const handleChange = (event) => {
-    const inputValue = event.target.value;
-    // Split the input string into an array of numbers, treating large numbers as single values
-    const valuesArray = inputValue.split(',').map(val => parseInt(val, 10));
+    const newValue = event.target.value;
+    setInputValue(newValue);
+
+    // Parse the input string into an array of numbers
+    const valuesArray = newValue.split(',').map(val => parseInt(val, 10));
     onChange(valuesArray);
  };
 
  const handleFocus = (e) => {
     e.target.style.outline = "none";
  }
-
- const valueArray = Array.isArray(value) ? value : [];
 
  // Define animation variants
  const inputVariants = {
@@ -33,7 +35,7 @@ const ArrayInput = ({ text, value, onChange }) => {
         <motion.input
           id="input-field"
           type="text"
-          value={valueArray.join(',')} // Convert array to string for display
+          value={inputValue}
           onChange={handleChange}
           placeholder="Enter numbers separated by commas"
           variants={inputVariants}
@@ -49,4 +51,4 @@ const ArrayInput = ({ text, value, onChange }) => {
  );
 };
 
-export default ArrayInput;
+export default Gotit;

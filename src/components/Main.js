@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Main.css';
 import Field from './Field';
 import ArrayInput from './ArrayInput';
+import Getit from './Getit';
 
 const Main = () => {
  const [isHovered, setIsHovered] = useState(false);
@@ -58,7 +59,7 @@ const Main = () => {
       <h1>Enter the values of the necessary parameters</h1>
       {fields.map((field, index) => (
         field.name === 'Holding Cost' ? (
-          <ArrayInput
+          <Getit
             text="Holding cost"
             key={field.name}
             value={holdingCostField.value.join(',')}
