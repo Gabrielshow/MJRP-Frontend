@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import './Main.css';
-import Field from './Field';
+// import Field from './Field';
+import Pike from './Pike';
 // import MultiJointInput from './MultiJointInput';
 // import Gotit from './Gotit';
 // import Greddy from './greddy';
+import Simple from './Simple';
 import Hope from './hope';
 import DisplayArray from './DisplayArray';
 
@@ -12,9 +14,11 @@ const Main = () => {
  const [result, setResult] = useState(null);
  const [fields, setFields] = useState([
     { name: 'Holding Cost', value: [] },
-    { name: 'Minor Cost', value: '' },
-    { name: 'Setup Cost', value: '' },
-    { name: 'Demand', value: '' },
+    // { name: 'Minor Cost', value: [] },
+    { name: 'Setup Cost', value: [] },
+    { name: 'Demand', value: [] },
+    { name: 'Variable Cost', value: []},
+    { name: 'Inventory Carrying Charge', value: []}
  ]);
 
  const handleRun = async () => {
@@ -55,12 +59,12 @@ const Main = () => {
       <h1>Enter the values of the necessary parameters</h1>
       {fields.map((field, index) => (
         field.name === 'Holding Cost' ? (
-          <Hope
+          <Simple
             key={field.name}
             onChange={(newValue) => handleFieldChange(index, newValue)}
           />
         ) : (
-          <Field
+          <Pike
             key={field.name}
             Text={field.name}
             value={field.value}

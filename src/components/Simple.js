@@ -1,24 +1,27 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Hope = ({ onChange }) => {
+const Simple = ({ onChange }) => {
     const [s, setS] = useState([['']]); // Initialize with one row and one column
 
     const handleInputChange = (rowIndex, colIndex, value) => {
-        const newS = [...s];
-        // Split the input by comma and store as array
-        newS[rowIndex][colIndex] = value.split(',').map(val => val.trim());
-        setS(newS);
-        // Trigger the onChange callback with the updated array of arrays
-        onChange(newS);
+        // Check if the input is a valid number
+        if (!isNaN(value)) {
+            const newValue = parseFloat(value); // Convert input value to number
+            const newS = [...s];
+            newS[rowIndex][colIndex] = [newValue]; // Store value in a one-element array
+            setS(newS);
+            // Trigger the onChange callback with the updated array of arrays
+            onChange(newS);
+        }
     };
 
     const addRow = () => {
-        setS([...s, new Array(s[0].length).fill('')]); // Add a new row with same number of columns
+        setS([...s, new Array(s[0].length).fill([''])]); // Add a new row with same number of columns
     };
 
     const addColumn = () => {
-        const newS = s.map(row => [...row, '']); // Add a new column to each row
+        const newS = s.map(row => [...row, ['']]); // Add a new column to each row
         setS(newS);
     };
 
@@ -48,12 +51,12 @@ const Hope = ({ onChange }) => {
             <span>Minor Setup Cost:</span> 
                 {s.map((row, rowIndex) => (
                     <div key={rowIndex}>
-                         {/* Add span with the text */}
+                        {/* Add span with the text */}
                         {row.map((value, colIndex) => (
                             <motion.input
                                 key={colIndex}
                                 type="text"
-                                value={value}
+                                value={value[0] || ''}
                                 onChange={(e) => handleInputChange(rowIndex, colIndex, e.target.value)}
                                 variants={inputVariants}
                                 initial="hidden"
@@ -67,7 +70,7 @@ const Hope = ({ onChange }) => {
                             onClick={addColumn}
                             variants={buttonVariants}
                         >
-                            Add Column
+                            Add Item
                         </motion.button>
                     </div>
                 ))}
@@ -76,7 +79,7 @@ const Hope = ({ onChange }) => {
                 onClick={addRow}
                 variants={buttonVariants}
             >
-                Add Row
+                Add Buyer
             </motion.button>
             <motion.button
                 onClick={handleSubmit}
@@ -87,5 +90,5 @@ const Hope = ({ onChange }) => {
         </div>
     );
 };
-
-export default Hope;
+    
+export default Simple
