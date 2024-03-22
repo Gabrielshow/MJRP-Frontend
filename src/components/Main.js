@@ -46,7 +46,7 @@ const Main = () => {
   updatedFields[index].value = value;
   setFields(updatedFields);
  };
-
+ 
  return (
     <div className="main">
       {result && (
@@ -62,6 +62,7 @@ const Main = () => {
         field.name === 'Holding Cost' || field.name === 'Demand' ? (
           <Jix
             key={field.name}
+            Text = {field.name}
             onChange={(newValue) => handleFieldChange(index, newValue)}
           />
         ) : (

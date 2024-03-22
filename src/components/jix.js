@@ -4,10 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Jix = ({ onChange, Text }) => {
     console.log(Text);
     const initialData = [
-        ['Buyer ID', 'Item X', 'Item Y', 'Item Z'],
-        ['Buyer A', '1000', '500', '800'],
-        ['Buyer B', '800', '700', '600'],
-        ['Buyer C', '1200', '600', '900']
+        ['Buyer ID', 'Item X', 'Item Y', 'Item Z']
     ];
     
     const [s, setS] = useState(initialData);
@@ -70,7 +67,7 @@ const Jix = ({ onChange, Text }) => {
     return (
         <div>
             <AnimatePresence>
-                <span>{Text}</span> {/* Ensure the Text prop is displayed */}
+                <span>{Text}:</span> {/* Ensure the Text prop is displayed */}
                 {s.map((row, rowIndex) => (
                     <div key={rowIndex}>
                         {row.map((value, colIndex) => (
