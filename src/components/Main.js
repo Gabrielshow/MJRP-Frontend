@@ -6,8 +6,8 @@ import Jix from './jix';
 // import MultiJointInput from './MultiJointInput';
 // import Gotit from './Gotit';
 // import Greddy from './greddy';
-import Simple from './Simple';
-import Hope from './hope';
+// import Simple from './Simple';
+// import Hope from './hope';
 import DisplayArray from './DisplayArray';
 
 const Main = () => {
@@ -19,7 +19,8 @@ const Main = () => {
     { name: 'Setup Cost', value: [] },
     { name: 'Demand', value: [] },
     { name: 'Variable Cost', value: []},
-    { name: 'Inventory Carrying Charge', value: []}
+    { name: 'Inventory Carrying Charge', value: []},
+    { name: 'Setup Multipliers', value: []}
  ]);
 
  const handleRun = async () => {
@@ -45,6 +46,7 @@ const Main = () => {
   // Directly assign the value for 'Holding Cost' without further processing
   updatedFields[index].value = value;
   setFields(updatedFields);
+  console.log(`Field name: ${fields[index].name}, Value: ${value}`);
  };
  
  return (
