@@ -1,12 +1,15 @@
 import React from 'react';
+import './DisplayArray.css'; // Import CSS file for styling
 
 const DisplayArray = ({ array }) => {
     return (
-        <div>
+        <div className="grid-container">
             {array.map((row, rowIndex) => (
-                <div key={rowIndex}>
+                <div className="grid-row" key={rowIndex}>
                     {row.map((value, colIndex) => (
-                        <span key={colIndex}>{JSON.stringify(value)}</span>
+                        <div className="grid-item" key={colIndex}>
+                            {value}
+                        </div>
                     ))}
                 </div>
             ))}
