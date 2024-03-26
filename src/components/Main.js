@@ -15,31 +15,30 @@ const Main = () => {
  const [result, setResult] = useState(null);
  const [fields, setFields] = useState([
     { name: 'Holding Cost', value: [] },
-    // { name: 'Minor Cost', value: [] },
-    { name: 'Setup Cost', value: [] },
+    { name: 'Major Setup Cost', value: [] },
+    { name: 'Minor Setup Cost', value: [] },
     { name: 'Demand', value: [] },
     { name: 'Variable Cost', value: []},
     { name: 'Inventory Carrying Charge', value: []},
-    { name: 'Setup Multipliers', value: []}
+    { name: 'Time Multipliers', value: []}
  ]);
 
  const handleRun = async () => {
-    try {
-      const fieldValues = fields.map(field => field.name === 'Holding Cost' ? field.value.join(',') : field.value);
-      const response = await fetch('http://127.0.0.1:5000/calculate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ parameters: fieldValues })
-      });
-      const data = await response.json();
-      setResult(data.result);
-      console.log(data); // Handle response from the server
-    } catch (error) {
-      console.error('Error:', error);
-    }
- }
+  try {
+    const response = await fetch('http://127.0.0.1:5000/calculate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ parameters: fields }) // Adjusted to match backend expectation
+    });
+    const data = await response.json();
+    setResult(data); // The result is directly assigned since the backend returns the entire result object
+    console.log(data); // Handle response from the server
+  } catch (error) {
+    console.error('Error:', error);
+  }
+}
 
  const handleFieldChange = (index, value) => {
   const updatedFields = [...fields];
