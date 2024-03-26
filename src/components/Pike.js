@@ -7,13 +7,16 @@ const Pike = ({ Text, index, onChange }) => {
 
     const handleChange = (e) => {
         const newValue = e.target.value;
-        const parsedValues = newValue.split(',').map(val => val.trim());
+        const parsedValues = newValue.split(',').map(val => {
+            const parsedValue = parseFloat(val.trim()); // Parse each value as a float
+            return isNaN(parsedValue) ? null : parsedValue; // Return null for non-numeric values
+        }).filter(val => val !== null); // Filter out null values
         setValue(parsedValues);
-        if (parsedValues.every(val => !isNaN(val) || val === '')) {
-            onChange(parsedValues.filter(val => val !== ''));
+        if (parsedValues.length > 0) {
+            onChange(parsedValues); // Send the array of parsed values to the onChange callback
             setError('');
         } else {
-            setError(`${Text} must contain only numbers separated by commas`);
+            setError(`${Text} must contain at least one valid number`);
         }
     };
 

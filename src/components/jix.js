@@ -4,19 +4,21 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Jix = ({ onChange, Text }) => {
     console.log(Text);
     const initialData = [
-        ['Buyer ID', 'Item X', 'Item Y', 'Item Z']
+        [0]
     ];
     
     const [s, setS] = useState(initialData);
 
     const handleInputChange = (rowIndex, colIndex, value) => {
-        const newS = [...s];
-        newS[rowIndex][colIndex] = value; // Update the value directly
-        setS(newS);
-        // Trigger the onChange callback with the updated array of arrays
-        onChange(newS);
+        const parsedValue = parseFloat(value); // Parse the input value as a float
+        if (!isNaN(parsedValue)) { // Check if the parsed value is a valid number
+            const newS = [...s];
+            newS[rowIndex][colIndex] = parsedValue; // Update the value directly
+            setS(newS);
+            // Trigger the onChange callback with the updated array of arrays
+            onChange(newS);
+        }
     };
-
     const addRow = () => {
         const newRow = Array(s[0].length).fill(''); // New row with same number of columns
         setS([...s, newRow]);
@@ -73,7 +75,7 @@ const Jix = ({ onChange, Text }) => {
                         {row.map((value, colIndex) => (
                             <motion.input
                                 key={colIndex}
-                                type="text"
+                                type="number"
                                 value={value}
                                 onChange={(e) => handleInputChange(rowIndex, colIndex, e.target.value)}
                                 variants={inputVariants}

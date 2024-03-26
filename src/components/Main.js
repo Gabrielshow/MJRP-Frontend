@@ -45,7 +45,7 @@ const Main = () => {
   // Directly assign the value for 'Holding Cost' without further processing
   updatedFields[index].value = value;
   setFields(updatedFields);
-  console.log(`Field name: ${fields[index].name}, Value: ${value}`);
+  // console.log(`Field name: ${fields[index].name}, Value: ${value}`);
  };
  
  return (
