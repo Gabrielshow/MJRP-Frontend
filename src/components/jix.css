@@ -1,0 +1,15 @@
+input[type="number"] {
+    -webkit-appearance: textfield; /* Hide increment and decrement buttons in Chrome, Safari, and Opera */
+    -moz-appearance: textfield; /* Hide increment and decrement buttons in Firefox */
+    appearance: textfield; /* Standard syntax */
+   }
+   
+   input[type="number"]::-webkit-inner-spin-button,
+   input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* Remove default margin */
+   }
+   
+   input[type="number"] {
+    min: -999999999; /* Allow zero to be edited */
+   }

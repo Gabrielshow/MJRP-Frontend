@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import './jix.css';
 
 const Jix = ({ onChange, Text }) => {
     console.log(Text);
@@ -10,15 +11,25 @@ const Jix = ({ onChange, Text }) => {
     const [s, setS] = useState(initialData);
 
     const handleInputChange = (rowIndex, colIndex, value) => {
-        const parsedValue = parseFloat(value); // Parse the input value as a float
-        if (!isNaN(parsedValue)) { // Check if the parsed value is a valid number
+        // Allow empty strings as valid inputs
+        if (value === '') {
             const newS = [...s];
-            newS[rowIndex][colIndex] = parsedValue; // Update the value directly
+            newS[rowIndex][colIndex] = ''; // Update the value to an empty string
             setS(newS);
             // Trigger the onChange callback with the updated array of arrays
             onChange(newS);
+        } else {
+            const parsedValue = parseFloat(value); // Parse the input value as a float
+            if (!isNaN(parsedValue)) { // Check if the parsed value is a valid number
+                const newS = [...s];
+                newS[rowIndex][colIndex] = parsedValue; // Update the value directly
+                setS(newS);
+                // Trigger the onChange callback with the updated array of arrays
+                onChange(newS);
+            }
         }
     };
+    
     const addRow = () => {
         const newRow = Array(s[0].length).fill(''); // New row with same number of columns
         setS([...s, newRow]);
@@ -76,6 +87,7 @@ const Jix = ({ onChange, Text }) => {
                             <motion.input
                                 key={colIndex}
                                 type="number"
+                                min="-999999999"
                                 value={value}
                                 onChange={(e) => handleInputChange(rowIndex, colIndex, e.target.value)}
                                 variants={inputVariants}
